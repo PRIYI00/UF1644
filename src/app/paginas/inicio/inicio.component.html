@@ -1,5 +1,87 @@
 <h1> {{titulo}} </h1>
 <!-- Boton de una nueva Noticia y Formulario-->
+<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalNoticia">
+    Crear Nueva Noticia
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modalNoticia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btn-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> Nueva Noticia </h4>
+            </div>
+            <div class="modal-body">
+                {{formularioNoticia.value | json}}
+                <form [formGroup] = "formularioNoticia" (ngSubmit) = "enviar(formularioNoticia.value)">
+                    <!-- Titulo -->
+                    <small *ngIf="formularioNoticia.controls.titulo.invalid && formularioNoticia.controls.titulo.dirty"
+                        class="text-danger" >Minimo 2 caracteres Maximo 100 </small>
+        
+                    <small *ngIf="formularioNoticia.controls.titulo.valid"
+                        class="text-success"> Nombre del Titulo Correcto </small> 
+        
+                    <input type="text" formControlName = "titulo"
+                        placeholder = "Titular Noticia"
+                        class = "form-control mb-2"/>
+
+                    <!-- Imagen -->
+                    <small *ngIf="formularioNoticia.controls.imagen.invalid && formularioNoticia.controls.imagen.dirty"
+                        class="text-danger"> Minimo 2 caracteres Maximo 500 </small>
+        
+                    <small *ngIf="formularioNoticia.controls.imagen.valid"
+                        class="text-success"> Imagen Correcta </small> 
+        
+                    <input type="text" formControlName = "imagen"
+                        placeholder = "Imagen Noticia"
+                        class = "form-control mb-2"/>
+
+                    <!-- Fecha -->
+                    <small *ngIf="formularioNoticia.controls.fecha.invalid && formularioNoticia.controls.fecha.dirty"
+                        class="text-danger" > Tiene que ser el Formato Adecuado </small>
+        
+                    <small *ngIf="formularioNoticia.controls.fecha.valid"
+                        class="text-success"> Fecha Correcta </small> 
+        
+                    <input type="text" formControlName = "fecha"
+                        placeholder = "Formato de la Fecha: 00/00/0000"
+                        class = "form-control mb-2"/>
+
+                    <!-- textoCorto -->
+                    <small *ngIf="formularioNoticia.controls.textoCorto.invalid && formularioNoticia.controls.textoCorto.dirty"
+                        class="text-danger" > Minimo 2 caracteres Maximo 100 </small>
+     
+                    <small *ngIf="formularioNoticia.controls.textoCorto.valid"
+                        class="text-success"> Texto Correcto </small> 
+     
+                    <input type="text" formControlName = "textoCorto"
+                        placeholder = "Introduce el Resumen de la Noticia"
+                        class = "form-control mb-2"/>
+
+                    <!-- textoNoticia -->
+                    <small *ngIf="formularioNoticia.controls.textoNoticia.invalid && formularioNoticia.controls.textoNoticia.dirty"
+                        class="text-danger" > Minimo 2 caracteres Maximo 500 </small>
+     
+                    <small *ngIf="formularioNoticia.controls.textoNoticia.valid"
+                        class="text-success"> Texto Correcto </small> 
+     
+                    <textarea formControlName="textoNoticia" 
+                        maxlength="500" class="form-control mb-2" 
+                        placeholder = "Introduce el Texto de la Noticia">
+                    </textarea>
+
+                    <!-- Enviar -->
+                    <input  type="submit" 
+                        [disabled] = "formularioNoticia.invalid" 
+                        value="Enviar"
+                        class="btn btn-primary btn-block">
+                </form>
+            </div>   
+        </div>
+    </div>
+</div>
+
 
 <!-- Detalle y Listado de Noticias -->
 <div class="row">
