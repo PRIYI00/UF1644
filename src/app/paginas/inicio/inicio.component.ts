@@ -87,6 +87,15 @@ export class InicioComponent implements OnInit {
       }
     );
 
+    //Resetar Formulario e Inicializar
+    this.formularioNoticia.reset({
+      titulo: '',
+      imagen: '',
+      fecha: '',
+      textoCorto: '',
+      textoNoticia: ''
+    });   
+
     $("#btn-close").click();
   } // Enviar Formulario
 
