@@ -89,6 +89,7 @@ export class InicioComponent implements OnInit {
 
     //Resetar Formulario e Inicializar
     this.formularioNoticia.reset({
+      id: 0,
       titulo: '',
       imagen: '',
       fecha: '',
